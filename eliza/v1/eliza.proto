@@ -1,0 +1,18 @@
+
+syntax = "proto3";
+
+package eliza.v1;
+
+option go_package = "github.com/bhainesva/go-typescript-bazel-connect-service/gen/eliza/v1;elizav1";
+
+message SayRequest {
+  string sentence = 1;
+}
+
+message SayResponse {
+  string sentence = 1;
+}
+
+service ElizaService {
+  rpc Say(SayRequest) returns (SayResponse) {}
+}

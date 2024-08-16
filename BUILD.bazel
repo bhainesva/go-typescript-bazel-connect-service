@@ -28,6 +28,17 @@ go_library(
 
 go_binary(
     name = "basic-gazelle",
-    embed = [":basic-gazelle_lib"],
+    embed = [":go-typescript-bazel-connect-service_lib"],
     visibility = ["//visibility:public"],
+)
+
+go_library(
+    name = "go-typescript-bazel-connect-service_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/bhainesva/go-typescript-bazel-connect-service",
+    visibility = ["//visibility:private"],
+    deps = [
+        "@io_bazel_rules_go//examples/basic-gazelle/cmd:go_default_library",
+        "@io_k8s_klog_v2//:klog",
+    ],
 )

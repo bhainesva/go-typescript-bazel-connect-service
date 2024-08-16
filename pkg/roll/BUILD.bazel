@@ -3,7 +3,7 @@ load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
 go_library(
     name = "roll",
     srcs = ["roll_dice.go"],
-    importpath = "github.com/bazelbuild/rules_go/examples/basic-gazelle/pkg/roll",
+    importpath = "github.com/bhainesva/go-typescript-bazel-connect-service/pkg/roll",
     visibility = ["//visibility:public"],
     deps = ["@io_k8s_klog_v2//:klog"],
 )

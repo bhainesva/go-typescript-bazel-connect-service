@@ -9,7 +9,11 @@ require (
 )
 
 require (
+	connectrpc.com/connect v1.16.2 // indirect
 	github.com/go-logr/logr v1.2.0 // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
+	golang.org/x/net v0.28.0 // indirect
+	golang.org/x/text v0.17.0 // indirect
+	google.golang.org/protobuf v1.33.0 // indirect
 )

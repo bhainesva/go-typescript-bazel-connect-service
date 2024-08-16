@@ -1,0 +1,12 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "elizav1connect",
+    srcs = ["eliza.connect.go"],
+    importpath = "github.com/bhainesva/go-typescript-bazel-connect-service/gen/eliza/v1/elizav1connect",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//gen/eliza/v1:eliza",
+        "@com_connectrpc_connect//:connect",
+    ],
+)
