@@ -1,5 +1,5 @@
 load("@bazel_gazelle//:def.bzl", "gazelle")
-load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+load("@rules_go//go:def.bzl", "go_binary", "go_library")
 
 # gazelle:prefix github.com/bhainesva/go-typescript-bazel-connect-service
 gazelle(name = "gazelle")
@@ -38,7 +38,7 @@ go_library(
     importpath = "github.com/bhainesva/go-typescript-bazel-connect-service",
     visibility = ["//visibility:private"],
     deps = [
-        "@io_bazel_rules_go//examples/basic-gazelle/cmd:go_default_library",
+        "@rules_go//examples/basic-gazelle/cmd:go_default_library",
         "@io_k8s_klog_v2//:klog",
     ],
 )
