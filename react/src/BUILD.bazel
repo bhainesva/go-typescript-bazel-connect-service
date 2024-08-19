@@ -23,11 +23,14 @@ ts_project(
     tsconfig = "//react:tsconfig",
     visibility = ["//react:__subpackages__"],
     deps = [
+        "//react:node_modules/@connectrpc/connect",
+        "//react:node_modules/@connectrpc/connect-web",
         "//react:node_modules/@types/react",
         "//react:node_modules/react",
         "//react:node_modules/react-dom",
         "//react:node_modules/vite-plugin-svgr",
         "//react:node_modules/web-vitals",
+        "//react/proto:eliza_ts_proto",
     ],
 )
 

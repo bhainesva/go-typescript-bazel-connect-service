@@ -1,25 +1,73 @@
 /// <reference types="vite-plugin-svgr/client" />
-import logo from './logo.svg?react';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+
+import { createPromiseClient } from "@connectrpc/connect";
+import { createConnectTransport } from "@connectrpc/connect-web";
+import { ElizaService } from "../proto/eliza_connect";
+
+// The transport defines what type of endpoint we're hitting.
+// In our example we'll be communicating with a Connect endpoint.
+// If your endpoint only supports gRPC-web, make sure to use
+// `createGrpcWebTransport` instead.
+const transport = createConnectTransport({
+  baseUrl: "https://demo.connectrpc.com",
+});
+
+// Here we make the client itself, combining the service
+// definition with the transport.
+const client = createPromiseClient(ElizaService, transport);
 
 function App() {
+  const [inputValue, setInputValue] = useState("");
+  const [messages, setMessages] = useState<
+    {
+      fromMe: boolean;
+      message: string;
+    }[]
+  >([]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ol>
+        {messages.map((msg, index) => (
+          <li key={index}>
+            {`${msg.fromMe ? "ME:" : "ELIZA:"} ${msg.message}`}
+          </li>
+        ))}
+      </ol>
+      <form
+        onSubmit={async (e) => {
+          e.preventDefault();
+          // Clear inputValue since the user has submitted.
+          setInputValue("");
+          // Store the inputValue in the chain of messages and
+          // mark this message as coming from "me"
+          setMessages((prev) => [
+            ...prev,
+            {
+              fromMe: true,
+              message: inputValue,
+            },
+          ]);
+          const response = await client.say({
+            sentence: inputValue,
+          });
+          setMessages((prev) => [
+            ...prev,
+            {
+              fromMe: false,
+              message: response.sentence,
+            },
+          ]);
+        }}
+      >
+        <input
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        />{" "}
+        <button type="submit">Send</button>
+      </form>
+    </>
   );
 }
 
