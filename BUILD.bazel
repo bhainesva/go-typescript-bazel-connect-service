@@ -1,5 +1,10 @@
-load("@bazel_gazelle//:def.bzl", "gazelle")
+load("@gazelle//:def.bzl", "gazelle")
 load("@rules_go//go:def.bzl", "go_binary", "go_library")
+
+load("@npm//:defs.bzl", "npm_link_all_packages")
+load("@npm//:eslint/package_json.bzl", eslint_bin = "bin")
+
+package(default_visibility = ["//:__subpackages__"])
 
 # gazelle:prefix github.com/bhainesva/go-typescript-bazel-connect-service
 gazelle(name = "gazelle")
@@ -42,3 +47,13 @@ go_library(
         "@io_k8s_klog_v2//:klog",
     ],
 )
+
+
+## Copied from /examples/frontend
+# Root BUILD file for all frontend examples
+
+# Create the root of the "virtual store" of npm dependencies under bazel-out.
+# This must be done in the package where the pnpm workspace is rooted.
+npm_link_all_packages(name = "node_modules")
+
+eslint_bin.eslint_binary(name = "eslint")
