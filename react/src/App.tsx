@@ -3,9 +3,9 @@ import { useState } from "react";
 import "./App.css";
 
 import { createConnectTransport } from "@connectrpc/connect-web";
-import { TransportProvider, useQuery, useMutation } from "@connectrpc/connect-query";
+import { TransportProvider, useMutation } from "@connectrpc/connect-query";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { say } from "../../eliza/v1/eliza-ElizaService_connectquery";
+import { say } from "@protos/eliza/v1/eliza-ElizaService_connectquery"
 
 // The transport defines what type of endpoint we're hitting.
 // In our example we'll be communicating with a Connect endpoint.

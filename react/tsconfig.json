@@ -14,7 +14,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "declaration": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "paths": {
+      "@protos/*": [
+        "../../",
+        "../bazel-out/darwin_arm64-fastbuild/bin/*"
+      ]
+    }
   },
   "include": ["src"]
 }

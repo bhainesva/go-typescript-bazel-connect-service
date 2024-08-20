@@ -6,6 +6,12 @@ import svgr from 'vite-plugin-svgr'
 export default defineConfig({
   base: '/',
   plugins: [svgr(), react()],
+  resolve: {
+    alias: [{
+      find: "@protos",
+      replacement: "../../",
+    }]
+  },
   test: {
     globals: true,
     css: true,

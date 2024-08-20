@@ -13,8 +13,8 @@ Generate types for editor with:
 `bazel run //react/proto:eliza_ts_proto.copy`
 
 TODO:
-- rely on bazel generated code instead of manually generated things copied back into source tree
-- use tanstack query helpers
+- remove hardcoded eliza stuff from protoc plugin
+- the hardcoded "../../" path alias in vite config is suspicious, what if I'm at a different location?
 - make sure gazelle is actually doing things right
 - updating to @bufbuild/protobuf@2.0.0 starts generating invalid javascript..
 - updating to rules_ts@3.0.0-rc2 breaks the :src build
