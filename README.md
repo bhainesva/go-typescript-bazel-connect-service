@@ -1,5 +1,5 @@
 Run server with:
-`bazelisk run //cmd/server:server`
+`ibazel run //cmd/server:server`
 
 Send request with:
 ```
@@ -15,7 +15,6 @@ Generate types for editor with:
 TODO:
 - don't duplicate proto definitions
 - rely on bazel generated code instead of manually generated things copied back into source tree
-- update go server when go code is changed
 - use tanstack query helpers
 - updating to @bufbuild/protobuf@2.0.0 starts generating invalid javascript..
 - updating to rules_ts@3.0.0-rc2 breaks the :src build
