@@ -19,3 +19,6 @@ TODO:
 - make sure gazelle is actually doing things right
 - updating to @bufbuild/protobuf@2.0.0 starts generating invalid javascript..
 - updating to rules_ts@3.0.0-rc2 breaks the :src build
+
+HMM:
+- https://github.com/connectrpc/connect-go/discussions/310#discussioncomment-10016813

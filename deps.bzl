@@ -83,7 +83,7 @@ def go_dependencies():
         name = "org_golang_google_protobuf",
         importpath = "google.golang.org/protobuf",
         sum = "h1:uNO2rsAINq/JlFpSdYEKIZ0uKD/R9cpdv0T+yoGwGmI=",
-        version = "v1.33.0",
+        version = "v1.34.0",
     )
     go_repository(
         name = "org_golang_x_crypto",

@@ -1,0 +1,21 @@
+load("@rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_binary(
+    name = "protoc-gen-protoc-plugin",
+    embed = [":protoc-plugin_lib"],
+    visibility = ["//visibility:public"],
+)
+
+go_library(
+    name = "protoc-plugin_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/bhainesva/go-typescript-bazel-connect-service/cmd/protoc-plugin",
+    visibility = ["//visibility:private"],
+    deps = [
+        "@com_connectrpc_connect//:connect",
+        "@org_golang_google_protobuf//compiler/protogen",
+        "@org_golang_google_protobuf//reflect/protoreflect",
+        "@org_golang_google_protobuf//types/descriptorpb",
+        "@org_golang_google_protobuf//types/pluginpb",
+    ],
+)
