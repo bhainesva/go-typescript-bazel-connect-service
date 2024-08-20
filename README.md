@@ -9,7 +9,7 @@ curl   --header 'Content-Type: application/json'   --data '{"sentence": "I feel 
 Run frontend with:
 `pnpm start` in `/react`
 
-Generate types for editor with:
+Generate types for editor with (you don't need to do this anymore):
 `bazel run //react/proto:eliza_ts_proto.copy`
 
 TODO:
