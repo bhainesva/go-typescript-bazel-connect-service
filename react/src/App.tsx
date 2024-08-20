@@ -2,9 +2,10 @@
 import { useState } from "react";
 import "./App.css";
 
-import { createPromiseClient } from "@connectrpc/connect";
 import { createConnectTransport } from "@connectrpc/connect-web";
-import { ElizaService } from "../../eliza/v1/eliza_connect";
+import { TransportProvider, useQuery, useMutation } from "@connectrpc/connect-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { say } from "../../eliza/v1/eliza-ElizaService_connectquery";
 
 // The transport defines what type of endpoint we're hitting.
 // In our example we'll be communicating with a Connect endpoint.
@@ -16,9 +17,19 @@ const transport = createConnectTransport({
 
 // Here we make the client itself, combining the service
 // definition with the transport.
-const client = createPromiseClient(ElizaService, transport);
+const queryClient = new QueryClient();
 
 function App() {
+  return (
+    <TransportProvider transport={transport}>
+      <QueryClientProvider client={queryClient}>
+        <AppImpl />
+      </QueryClientProvider>
+    </TransportProvider>
+  );
+}
+
+function AppImpl() {
   const [inputValue, setInputValue] = useState("");
   const [messages, setMessages] = useState<
     {
@@ -26,9 +37,21 @@ function App() {
       message: string;
     }[]
   >([]);
-  return (
-    <>
-      <ol>
+
+  const mutation = useMutation(say, {
+    onSuccess: (data) => {
+      setMessages((prev) => [
+        ...prev,
+        {
+          fromMe: false,
+          message: data.sentence,
+        },
+      ]);
+    }
+  })
+
+  return <>
+        <ol>
         {messages.map((msg, index) => (
           <li key={index}>
             {`${msg.fromMe ? "ME:" : "ELIZA:"} ${msg.message}`}
@@ -38,8 +61,8 @@ function App() {
       <form
         onSubmit={async (e) => {
           e.preventDefault();
-          // Clear inputValue since the user has submitted.
-          setInputValue("");
+          mutation.mutate({sentence: inputValue})
+
           // Store the inputValue in the chain of messages and
           // mark this message as coming from "me"
           setMessages((prev) => [
@@ -49,16 +72,8 @@ function App() {
               message: inputValue,
             },
           ]);
-          const response = await client.say({
-            sentence: inputValue,
-          });
-          setMessages((prev) => [
-            ...prev,
-            {
-              fromMe: false,
-              message: response.sentence,
-            },
-          ]);
+          // Clear inputValue since the user has submitted.
+          setInputValue("");          
         }}
       >
         <input
@@ -68,7 +83,7 @@ function App() {
         <button type="submit">Send</button>
       </form>
     </>
-  );
+
 }
 
 export default App;

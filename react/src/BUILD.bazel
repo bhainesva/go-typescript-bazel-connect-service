@@ -25,6 +25,8 @@ ts_project(
     deps = [
         "//react:node_modules/@connectrpc/connect",
         "//react:node_modules/@connectrpc/connect-web",
+        "//react:node_modules/@connectrpc/connect-query",
+        "//react:node_modules/@tanstack/react-query",
         "//react:node_modules/@types/react",
         "//react:node_modules/react",
         "//react:node_modules/react-dom",
