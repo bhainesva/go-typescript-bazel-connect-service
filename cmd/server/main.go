@@ -28,11 +28,22 @@ func (s *ElizaServer) Say(
 	return res, nil
 }
 
+func corsMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Add("Access-Control-Allow-Origin", "*")
+		w.Header().Add("Access-Control-Allow-Headers", "connect-protocol-version,content-type")
+		if r.Method == "OPTIONS" {
+			w.WriteHeader(200)
+		}
+		next.ServeHTTP(w, r)
+	})
+}
+
 func main() {
 	eliza := &ElizaServer{}
 	mux := http.NewServeMux()
 	path, handler := elizav1connect.NewElizaServiceHandler(eliza)
-	mux.Handle(path, handler)
+	mux.Handle(path, corsMiddleware(handler))
 	http.ListenAndServe(
 		"localhost:8080",
 		// Use h2c so we can serve HTTP/2 without TLS.

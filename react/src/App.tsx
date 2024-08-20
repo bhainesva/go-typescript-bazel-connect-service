@@ -11,7 +11,7 @@ import { ElizaService } from "../proto/eliza_connect";
 // If your endpoint only supports gRPC-web, make sure to use
 // `createGrpcWebTransport` instead.
 const transport = createConnectTransport({
-  baseUrl: "https://demo.connectrpc.com",
+  baseUrl: "http://localhost:8080",
 });
 
 // Here we make the client itself, combining the service
