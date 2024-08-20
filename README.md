@@ -13,7 +13,6 @@ Generate types for editor with:
 `bazel run //react/proto:eliza_ts_proto.copy`
 
 TODO:
-- don't duplicate proto definitions
 - rely on bazel generated code instead of manually generated things copied back into source tree
 - use tanstack query helpers
 - make sure gazelle is actually doing things right
