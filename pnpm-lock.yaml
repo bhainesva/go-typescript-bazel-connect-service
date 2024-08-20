@@ -9,7 +9,20 @@ packageExtensionsChecksum: 1137c84cb3f5d653debe824f83a85f54
 importers:
 
   .:
+    dependencies:
+      '@bufbuild/protobuf':
+        specifier: ^1.10.0
+        version: 1.10.0
     devDependencies:
+      '@bufbuild/protoc-gen-es':
+        specifier: ^1.10.0
+        version: 1.10.0(@bufbuild/protobuf@1.10.0)
+      '@connectrpc/protoc-gen-connect-es':
+        specifier: ^1.4.0
+        version: 1.4.0(@bufbuild/protoc-gen-es@1.10.0)(@connectrpc/connect@1.4.0)
+      '@connectrpc/protoc-gen-connect-query':
+        specifier: ^1.4.1
+        version: 1.4.1(@bufbuild/protoc-gen-es@1.10.0)
       eslint:
         specifier: ^8.55.0
         version: 8.55.0

@@ -1,6 +1,8 @@
 load("@rules_go//proto:def.bzl", "go_proto_library")
 load("@rules_proto//proto:defs.bzl", "proto_library")
 load("@rules_go//proto:compiler.bzl", "go_proto_compiler")
+load("@aspect_rules_js//js:defs.bzl", "js_library")
+load("@aspect_rules_ts//ts:proto.bzl", "ts_proto_library")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -34,4 +36,22 @@ go_proto_library(
     importpath = "github.com/bhainesva/go-typescript-bazel-connect-service/gen/eliza/v1/elizav1connect",
     proto = "//eliza/v1:elizav1_proto",
     deps = ["//eliza/v1:elizav1_go_proto"]
+)
+
+ts_proto_library(
+    name = "eliza_ts_proto",
+    copy_files = True,
+    gen_connect_es = True,
+    gen_connect_query = True,
+    gen_connect_query_service_mapping = {
+        "eliza.proto": ["ElizaService"],
+    },
+    node_modules = "//:node_modules",
+    proto = ":elizav1_proto",
+)
+
+js_library(
+    name = "proto",
+    srcs = [":package.json"],
+    deps = ["eliza_ts_proto"],
 )

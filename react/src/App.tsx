@@ -4,7 +4,7 @@ import "./App.css";
 
 import { createPromiseClient } from "@connectrpc/connect";
 import { createConnectTransport } from "@connectrpc/connect-web";
-import { ElizaService } from "../proto/eliza_connect";
+import { ElizaService } from "../../eliza/v1/eliza_connect";
 
 // The transport defines what type of endpoint we're hitting.
 // In our example we'll be communicating with a Connect endpoint.

@@ -12,7 +12,7 @@ RUNTIME_DEPS = [
     "//react/public",
     "index.html",
     "package.json",
-    ":node_modules/@bufbuild/protobuf",
+    "//:node_modules/@bufbuild/protobuf",
     ":node_modules/react-dom",
     ":node_modules/react",
     ":node_modules/web-vitals",

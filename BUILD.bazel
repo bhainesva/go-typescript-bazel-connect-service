@@ -52,6 +52,6 @@ go_library(
 
 # Create the root of the "virtual store" of npm dependencies under bazel-out.
 # This must be done in the package where the pnpm workspace is rooted.
-npm_link_all_packages(name = "node_modules")
+npm_link_all_packages()
 
 eslint_bin.eslint_binary(name = "eslint")
