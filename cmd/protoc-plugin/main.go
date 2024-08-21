@@ -46,7 +46,6 @@ import (
 	"os"
 	"path"
 	"path/filepath"
-	"regexp"
 	"strings"
 	"unicode/utf8"
 
@@ -125,9 +124,9 @@ func generate(plugin *protogen.Plugin, file *protogen.File) {
 		)),
 	)
 
-	re := regexp.MustCompile(`/elizav1connect`)
-	grpcPackage := protogen.GoImportPath(re.ReplaceAllString(string(file.GoImportPath), ""))
-	// fmt.Println("what", re.ReplaceAllString(string(file.GoImportPath), ""))
+	parts := strings.Split(string(file.GoImportPath), "/")
+	newPath := strings.Join(parts[0:len(parts)-1], "/")
+	grpcPackage := protogen.GoImportPath(newPath)
 
 	generatePreamble(generatedFile, file)
 	generateServiceNameConstants(generatedFile, file.Services)
