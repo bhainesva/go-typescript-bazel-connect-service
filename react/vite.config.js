@@ -9,7 +9,7 @@ export default defineConfig({
   resolve: {
     alias: [{
       find: "@protos",
-      replacement: "../../",
+      replacement: "/../",
     }]
   },
   test: {

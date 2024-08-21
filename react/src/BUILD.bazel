@@ -32,6 +32,7 @@ ts_project(
         "//react:node_modules/react-dom",
         "//react:node_modules/vite-plugin-svgr",
         "//react:node_modules/web-vitals",
+        "//react/src/nested:helper",
         "//eliza/v1:eliza_ts_proto",
     ],
 )

@@ -1,0 +1,8 @@
+load("@aspect_rules_js//js:defs.bzl", "js_library")
+load("//react:defs.bzl", "SRC_PATTERNS")
+
+js_library(
+    name = "helper",
+    srcs = glob(SRC_PATTERNS),
+    visibility = ["//react:__subpackages__"],
+)
