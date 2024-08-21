@@ -23,9 +23,10 @@ ts_project(
     tsconfig = "//react:tsconfig",
     visibility = ["//react:__subpackages__"],
     deps = [
+        "//eliza/v1:eliza_ts_proto",
         "//react:node_modules/@connectrpc/connect",
-        "//react:node_modules/@connectrpc/connect-web",
         "//react:node_modules/@connectrpc/connect-query",
+        "//react:node_modules/@connectrpc/connect-web",
         "//react:node_modules/@tanstack/react-query",
         "//react:node_modules/@types/react",
         "//react:node_modules/react",
@@ -33,7 +34,6 @@ ts_project(
         "//react:node_modules/vite-plugin-svgr",
         "//react:node_modules/web-vitals",
         "//react/src/nested:helper",
-        "//eliza/v1:eliza_ts_proto",
     ],
 )
 

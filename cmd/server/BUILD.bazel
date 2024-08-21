@@ -6,8 +6,8 @@ go_library(
     importpath = "github.com/bhainesva/go-typescript-bazel-connect-service/cmd/server",
     visibility = ["//visibility:private"],
     deps = [
-        "//eliza/v1:elizav1_go_proto",
         "//eliza/v1:elizav1_go_connect_proto",
+        "//eliza/v1:elizav1_go_proto",
         "@com_connectrpc_connect//:connect",
         "@org_golang_x_net//http2",
         "@org_golang_x_net//http2/h2c",
